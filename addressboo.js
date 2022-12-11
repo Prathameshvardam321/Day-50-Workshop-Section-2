@@ -84,6 +84,7 @@ class Contact{
     toString()
     {
         return "Full Name = "+this._fullName+ ", Address = "+this.address+", City = "+this.city+", State = "+this.state+", Zip = "+this.zip+", Phone = "+this.phone+", Email = "+this.email;
+  
     }
 
 }
