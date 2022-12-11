@@ -45,7 +45,7 @@ html body {
     display: flex;
     flex-direction: column;
     min-height: calc(100vh-80px);
-    background-color: #ffffff;
+    background-color: #f7f7f7;
     padding: 30px 0 10px;
     box-sizing: border-box;
 }
@@ -101,7 +101,7 @@ td, th {
 }
 
 th {
-    background: #ffffff 0% 0% no-repeat padding-box;
+    background: #f7f7f7 0% 0% no-repeat padding-box;
     border-radius: 3px 3px 0px 0px ;
     text-align: left;
     font: normal normal medium 18px/24px Roboto;
@@ -122,7 +122,7 @@ td {
     font: normal normal normal 14px/21px Roboto;
     letter-spacing: 0px;
     color: solid grey;
-    background-color: #f7f7f7;
+    background-color: #ffffff;
     opacity: 1;
 }
 
