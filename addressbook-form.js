@@ -1,11 +1,11 @@
 let isUpdate = false;
 let contact = {};
 window.addEventListener('DOMContentLoaded',(event) => {
-    const flname = document.querySelector('#flname');
+    const fullname = document.querySelector('#fullname');
     const nameError = document.querySelector('.name-error');
-    flname.addEventListener('input',function(){
-        let name = document.querySelector('#flname').value;
-        if (flname.value.length == 0) {
+    fullname.addEventListener('input',function(){
+        let name = document.querySelector('#fullname').value;
+        if (fullname.value.length == 0) {
             nameError.textContent = "";
             return;
         }
@@ -17,19 +17,19 @@ window.addEventListener('DOMContentLoaded',(event) => {
         }
     });
 
-    const phnumber = document.querySelector('#phnumber');
-    const phnumberError = document.querySelector('.phnumber-error');
-    phnumber.addEventListener('input',function(){
-        let phoneNumber = document.querySelector('#phnumber').value;
-        if (phnumber.value.length == 0) {
-            phnumberError.textContent = "";
+    const phonenumber = document.querySelector('#phonenumber');
+    const phonenumberError = document.querySelector('.phonenumber-error');
+    phonenumber.addEventListener('input',function(){
+        let phoneNumber = document.querySelector('#phonenumber').value;
+        if (phonenumber.value.length == 0) {
+            phonenumberError.textContent = "";
             return;
         }
         try {
             (new Contact()).phone = phoneNumber;
-            phnumberError.textContent = "";
+            phonenumberError.textContent = "";
         } catch (e) {
-            phnumberError.textContent = e;
+            phonenumberError.textContent = e;
         }
     });
 
@@ -56,6 +56,7 @@ const save = () => {
     try {
         let personContact = createContact();
         createAndUpdateStorage(personContact);
+        window.location.replace("AddressbookHomePage.html");
     } catch(e) {
         return;
     }
@@ -64,15 +65,15 @@ const save = () => {
 const createContact = () => {
     let personContact = new Contact();
     try {
-        personContact._fullName = getInputValueById('#flname');
+        personContact._fullName = getInputValueById('#fullname');
     } catch (e) {
         setTextValue('.name-error',e);
     }
 
     try {
-        personContact._phone = getInputValueById('#phnumber');
+        personContact._phone = getInputValueById('#phonenumber');
     } catch (e) {
-        setTextValue('.phnumber-error',e);
+        setTextValue('.phonenumber-error',e);
     }
 
     try {
@@ -83,7 +84,7 @@ const createContact = () => {
 
     personContact._city = getInputValueById('#city');
     personContact._state = getInputValueById('#state');
-    personContact._zip = getInputValueById('#zipcode');
+    personContact._zip = getInputValueById('#zip');
     alert(personContact.toString());
     return personContact;
 }
@@ -94,12 +95,12 @@ const getInputValueById = (id) => {
 }
 
 const resetForm = () => {
-    setValue('#flname','');
-    setValue('#phnumber','');
+    setValue('#fullname','');
+    setValue('#phonenumber','');
     setValue('#address','');
     setValue('#city','Select City');
     setValue('#state','Select State');
-    setValue('#zipcode','');
+    setValue('#zip','');
 }
 
 const setValue = (id,value) => {
@@ -113,15 +114,12 @@ const setTextValue = (id,value) => {
 }
 
 function createAndUpdateStorage(personContact) {
-
     let contactList = JSON.parse(localStorage.getItem("ContactList"));
-
     if(contactList != undefined){
         contactList.push(personContact);
     } else {
         contactList = [personContact]
     }
-
     alert(contactList.toString());
     localStorage.setItem("ContactList",JSON.stringify(contactList));
 }
@@ -135,10 +133,10 @@ const checkForUpdate = () => {
 }
 
 const setForm = () => {
-    setValue('#flname',contact._fullName);
-    setValue('#phnumber',contact._phone);
+    setValue('#fullname',contact._fullName);
+    setValue('#phonenumber',contact._phone);
     setValue('#address',contact._address);
     setValue('#city',contact._city);
     setValue('#state',contact._state);
-    setValue('#zipcode',contact._zip);
+    setValue('#zip',contact._zip);
 }
